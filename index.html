@@ -18,10 +18,13 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
         .input-container {
             display: flex;
             align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
         }
         label {
             display: block;
@@ -50,28 +53,33 @@
         button:hover {
             background-color: #0056b3;
         }
+        #video-container {
+            display: none;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <label for="f_name">Please enter your first name:</label>
         <div class="input-container">
-            <input type="text" id="f_name" placeholder="first name">
+            <input type="text" id="f_name" placeholder="first name" onkeydown="if (event.key === 'Enter') checkName()">
             <button onclick="checkName()">Submit</button>
         </div>
+        <div id="video-container"></div>
     </div>
 
     <script>
-        const champions = ["joe", "ray", "andrew", "travis", "tyler", "kevin", "kenny", "tracy"];
-        const champions_url = "https://www.youtube.com/watch?v=04854XqcfCY&t=38s&autoplay=1";
+        const champions = ["joe", "ray", "andrew", "travis", "tyler", "kevin", "kenny", "tracy"].map(name => name.trim().toLowerCase());
         const hopefuls_url = "https://www.amazon.com/Fantasy-Football-Dummies-Martin-Signore/dp/0470125071/ref=sr_1_2";
 
         function checkName() {
             let input = document.getElementById("f_name").value.trim().toLowerCase();
-            let name = input.split(" ")[0].trim();
+            let name = input.split(" ")[0];
 
             if (champions.includes(name)) {
-                window.location.href = champions_url;
+                let videoContainer = document.getElementById("video-container");
+                videoContainer.innerHTML = '<iframe width="560" height="315" src="https://www.youtube.com/embed/04854XqcfCY?start=38&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
+                videoContainer.style.display = "block";
             } else {
                 window.location.href = hopefuls_url;
             }
