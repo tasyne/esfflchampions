@@ -1,1 +1,81 @@
-<h1>hi</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Champions Check</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #d3d3d3;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .input-container {
+            display: flex;
+            align-items: center;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-family: Arial, sans-serif;
+        }
+        input[type="text"] {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-right: 10px;
+            width: 200px;
+        }
+        input[type="text"]::placeholder {
+            color: #999;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: #fff;
+            cursor: pointer;
+            font-family: Arial, sans-serif;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <label for="f_name">Please enter your first name:</label>
+        <div class="input-container">
+            <input type="text" id="f_name" placeholder="first name">
+            <button onclick="checkName()">Submit</button>
+        </div>
+    </div>
+
+    <script>
+        const champions = ["joe", "ray", "andrew", "travis", "tyler", "kevin", "kenny", "tracy"];
+        const champions_url = "https://www.youtube.com/watch?v=04854XqcfCY&t=38s&autoplay=1";
+        const hopefuls_url = "https://www.amazon.com/Fantasy-Football-Dummies-Martin-Signore/dp/0470125071/ref=sr_1_2";
+
+        function checkName() {
+            let input = document.getElementById("f_name").value.trim().toLowerCase();
+            let name = input.split(" ")[0].trim();
+
+            if (champions.includes(name)) {
+                window.location.href = champions_url;
+            } else {
+                window.location.href = hopefuls_url;
+            }
+        }
+    </script>
+</body>
+</html>
